@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define io ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define mod 1000000007
+set<int> v[100005];
+vector<int>vis(100005,0);
+vector<int>s;
+void dfs(int node){
+    s.push_back(node);
+    vis[node]=1;
+    for(auto it:v[node]){
+        if(!vis[it]){
+            dfs(it);
+        }
+    }
+}
+int32_t main(){
+    io;
+    int t=1;
+    //cin>>t;
+    while(t--){
+        
+        //min heap bfs isnt the only way
+       int n,m;
+       cin>>n>>m;
+       int a,b;
+       while(m--){
+           cin>>a>>b;
+           v[a].insert(b);
+           v[b].insert(a);
+       }
+       dfs(1);
+       for(auto it:s)
+       cout<<it<<" ";
+       cout<<endl;
+    }
+ 
+ 
+}
